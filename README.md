@@ -1,10 +1,10 @@
 # DielectricSpectroscopyMethanol
-Computational dielectric spectroscopy for methanol
-
-Within this directory are the tools required to reproduce the work performed in the paper titled: "The Debye relaxation of methanol is driven by chain addition".  
+Computational dielectric spectroscopy for methanol  
 
 Contact information for this software:
 Rebecca Bone Materials Science and Engineering Division Material Measurement Laboratory National Institute of Standards and Technology rebecca.bone@nist.gov
+
+Within this directory are the tools required to reproduce the work performed in the paper titled: "The Debye relaxation of methanol is driven by chain addition".
 
 Paper contact information:
 Rebecca Bone Materials Science and Engineering Division Material Measurement Laboratory National Institute of Standards and Technology rebecca.bone@nist.gov
