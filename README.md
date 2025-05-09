@@ -1,0 +1,2 @@
+# DielectricSpectroscopyMethanol
+Computational dielectric spectroscopy for methanol
