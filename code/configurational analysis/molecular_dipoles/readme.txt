@@ -1,0 +1,3 @@
+Molecular static and induced dipole z-component (in the direction of the applied field)
+
+The MATLAB code named collect_molec_dipole.m collects the static and induced z-component of the dipole moment for each molecule in the simulation at each time step of that simulation. It requires the output tinker static (*.ustc) and induced (*.uind) atomic dipole files. The ending data structure is a two dimensional array of size (number of molecules) x (number of time steps).  If the user does not move or rename output of this code, this code will overwrite previous output as the naming is generic.

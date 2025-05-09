@@ -1,0 +1,3 @@
+Molecular Oh bond and CO bond angles to z-axis (where electric field is applied) and static and induced dipoles and lengths of chains over chain lifetimes
+
+The MATLAB code named collect_values_chainlife.m collects the total z-component of the static dipole, the total z-component of the induced dipole, the average OH bond angle to the z-axis, and the average CO bond angle to the z-ais, and the number of molecules for a chain at each time that the chain exists. It requires the chain data produced by other parts of this analysis. This generates cycle-averaged values for the starting, ending, maximal, and minimal values of the various metrics of chains.

@@ -1,0 +1,3 @@
+Bond angle to z-axis (upon which electric field is applied) analysis
+
+The MATLAB code named collect_molec_zangle.m collects the angle of a specified bond to the z-axis of each molecule in a simulation at each time step of that simulation. It requires the output tinker configuration file (methanol.arc in this case) to get positions of atoms from which to calculate the angle. The user must input the atom indeces in the first molecule of the two atoms involved in the bond of interest. The ending data structure is a two dimensional array of size (number of molecules) x (number of time steps).  If the user does not move or rename output of this code, this code will overwrite previous output as the naming is generic.

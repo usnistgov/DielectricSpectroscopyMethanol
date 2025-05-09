@@ -1,0 +1,3 @@
+Determination of values over just lone molecules and over just chained molecules
+
+The code lone_chain_values.m determines the average OH angle to the z-axis (the axis on which the field is applied), the average CO angle to the z-axis, the average molecular static dipole z-component, the average molecular induced dipole z-component, the total static dipole z-component, and the total induced dipole z-component within the categories of lone molecules and chained molecules at each time step in the simulation.
