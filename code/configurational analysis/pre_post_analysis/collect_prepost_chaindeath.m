@@ -10,6 +10,7 @@ oh = zangle_all;
 load('./co_zangle.mat','zangle_all')
 co = zangle_all;
 clear zangle_all
+load('./lone_ids.mat')
 
 % Data structures
 oh_pre = [];
@@ -26,35 +27,44 @@ times = [];
 for i = 1:1:nchain % Loop through all chains specified
     a = importdata([folder,'chain',num2str(i),'_end']); % Get chain end time
     b = importdata([folder,'chain',num2str(i),'_',num2str(a-1),'mol']); % Get molecule ID's at chain start time
-    % Zero out values for determination
-    zan_co_pre = 0;
-    zan_co_post = 0;
-    zan_oh_pre = 0;
-    zan_oh_post = 0;
-    sta_pre = 0;
-    sta_post = 0;
-    ind_pre = 0;
-    ind_post = 0;
-    % Collect values for start and just before start of current chain
-    for j = 1:1:size(b,2)
-        zan_co_pre = zan_co_pre + co(b(1,j),a-1);
-        zan_co_post = zan_co_post + co(b(1,j),a);
-        zan_oh_pre = zan_oh_pre + oh(b(1,j),a-1);
-        zan_oh_post = zan_oh_post + oh(b(1,j),a);
-        sta_pre = sta_pre + static(b(1,j),a-1);
-        sta_post = sta_post + static(b(1,j),a);
-        ind_pre = ind_pre + induced(b(1,j),a-1);
-        ind_post = ind_post + induced(b(1,j),a);
+    % Check that all molecules are alone after chain death
+    alone = zeros(1,size(b,2));
+    for q = 1:1:size(b,2)
+        if lone(b(1,q),a) == 0
+            alone(1,q) = 1;
+        end
     end
-    co_pre = [co_pre;zan_co_pre/size(b,2)];
-    co_post = [co_post;zan_co_post/size(b,2)];
-    oh_pre = [oh_pre;zan_oh_pre/size(b,2)];
-    oh_post = [oh_post;zan_oh_post/size(b,2)];
-    static_pre = [static_pre;sta_pre];
-    static_post = [static_post;sta_post];
-    induced_pre = [induced_pre;ind_pre];
-    induced_post = [induced_post;ind_post];
-    times = [times;a];
+    if sum(alone) == size(b,2)
+        % Zero out values for determination
+        zan_co_pre = 0;
+        zan_co_post = 0;
+        zan_oh_pre = 0;
+        zan_oh_post = 0;
+        sta_pre = 0;
+        sta_post = 0;
+        ind_pre = 0;
+        ind_post = 0;
+        % Collect values for start and just before start of current chain
+        for j = 1:1:size(b,2)
+            zan_co_pre = zan_co_pre + co(b(1,j),a-1);
+            zan_co_post = zan_co_post + co(b(1,j),a);
+            zan_oh_pre = zan_oh_pre + oh(b(1,j),a-1);
+            zan_oh_post = zan_oh_post + oh(b(1,j),a);
+            sta_pre = sta_pre + static(b(1,j),a-1);
+            sta_post = sta_post + static(b(1,j),a);
+            ind_pre = ind_pre + induced(b(1,j),a-1);
+            ind_post = ind_post + induced(b(1,j),a);
+        end
+        co_pre = [co_pre;zan_co_pre/size(b,2)];
+        co_post = [co_post;zan_co_post/size(b,2)];
+        oh_pre = [oh_pre;zan_oh_pre/size(b,2)];
+        oh_post = [oh_post;zan_oh_post/size(b,2)];
+        static_pre = [static_pre;sta_pre];
+        static_post = [static_post;sta_post];
+        induced_pre = [induced_pre;ind_pre];
+        induced_post = [induced_post;ind_post];
+        times = [times;a];
+    end
 end
 
 % Analysis
