@@ -10,6 +10,7 @@ oh = zangle_all;
 load('./co_zangle.mat','zangle_all')
 co = zangle_all;
 clear zangle_all
+load('./lone_ids.mat')
 
 % Data structures
 oh_pre = [];
@@ -39,15 +40,17 @@ for i = 1:1:nchain % Loop through all chains specified
                     end
                 end
                 if fl == 0 % If molecule k is new
-                    co_pre = [co_pre;co(d(1,k),j-1)];
-                    co_post = [co_post;co(d(1,k),j)];
-                    oh_pre = [oh_pre;oh(d(1,k),j-1)];
-                    oh_post = [oh_post;oh(d(1,k),j)];
-                    static_pre = [static_pre;static(d(1,k),j-1)];
-                    static_post = [static_post;static(d(1,k),j)];
-                    induced_pre = [induced_pre;induced(d(1,k),j-1)];
-                    induced_post = [induced_post;induced(d(1,k),j)];
-                    times = [times;j];
+                    if lone(d(1,k),j-1) == 0
+                        co_pre = [co_pre;co(d(1,k),j-1)];
+                        co_post = [co_post;co(d(1,k),j)];
+                        oh_pre = [oh_pre;oh(d(1,k),j-1)];
+                        oh_post = [oh_post;oh(d(1,k),j)];
+                        static_pre = [static_pre;static(d(1,k),j-1)];
+                        static_post = [static_post;static(d(1,k),j)];
+                        induced_pre = [induced_pre;induced(d(1,k),j-1)];
+                        induced_post = [induced_post;induced(d(1,k),j)];
+                        times = [times;j];
+                    end
                 end
             end
         end
